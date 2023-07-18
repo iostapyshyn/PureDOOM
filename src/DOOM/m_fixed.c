@@ -24,7 +24,6 @@
 
 #include "doom_config.h"
 
-#include "stdlib.h"
 #include "doomtype.h"
 #include "i_system.h"
 #include "m_fixed.h"
@@ -49,11 +48,11 @@ fixed_t FixedDiv(fixed_t a, fixed_t b)
 
 fixed_t FixedDiv2(fixed_t a, fixed_t b)
 {
-    double c;
+    long c;
 
-    c = ((double)a) / ((double)b) * FRACUNIT;
+    c = ((long long) a * FRACUNIT) / b;
 
     if (c >= 2147483648.0 || c < -2147483648.0)
         I_Error("Error: FixedDiv: divide by zero");
-    return (fixed_t)c;
+    return (fixed_t) (c);
 }
